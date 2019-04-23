@@ -20,15 +20,16 @@ posX1 = 0
 posY1 = 200
 posX2 = 200
 posY2 = 0
-vel = 7
+vel = 3
 vel1 = 0.5
 
-cont = 6
+cont = 2
 i = 0
 xixf = [(0,0,90,90),(90,0,90,90),(180,0,270,90)]
-up = True
+up = False
+down = True
 izquierda = False
-
+derecha = False
 def imagen(s):
     n_imagen = pygame.image.load(s)
     return n_imagen
@@ -37,32 +38,52 @@ def teclado():
     teclado = pygame.key.get_pressed()
     global cont
     global up
+    global down
     global izquierda
+    global derecha
     global posX
     global posY
     global posX2
     global posY2
     if teclado[K_d] or teclado[K_RIGHT]:
+        derecha = True
         izquierda = False
+        up = False
+        down = False
         posX += 1
         posX2 += 1
         cont += 1
-    if teclado[K_a] or teclado[K_LEFT]:
+
+    elif teclado[K_a] or teclado[K_LEFT]:
+        derecha = False
         izquierda = True
+        up = False
+        down = False
         posX -= 1
         posX2 -= 1
         cont += 1
-    if teclado[K_w] or teclado[K_UP]:
-        up = False
+
+    elif teclado[K_w] or teclado[K_UP]:
+        derecha = False
+        izquierda = False
+        up = True
+        down = False
         cont += 1
         posY -= 1
         posY2 -= 1
-    if teclado[K_s] or teclado[K_DOWN]:
-        up = True
+
+    elif teclado[K_s] or teclado[K_DOWN]:
+        derecha = False
+        izquierda = False
+        up = False
+        down = True
         cont += 1
         posY += 1
         posY2 += 1
+
+
     return
+
 
 def sprite():
     global cont
@@ -71,9 +92,9 @@ def sprite():
 
     if cont == p:
         i = 0
-    if cont == p*2:
+    elif cont == p*2:
         i = 1
-    if cont == p*3:
+    elif cont == p*3:
         i = 2
         cont=0
 
@@ -89,7 +110,6 @@ rectangulo = pygame.Rect(300,250,50,100)
 
 clock = pygame.time.Clock()
 
-derecha = True
 while True:
     time = clock.tick(60)
     teclado()
@@ -100,12 +120,12 @@ while True:
 #    ventana.blit(Mi_imagen,(posX,posY))
     ventana.blit(Mi_imagen2,(posX1,posY1))
     if up == True:
-        ventana.blit(sprite_abajo,(posX2,posY2),(xixf[i]))
-    else:
         ventana.blit(sprite_arriba,(posX2,posY2),(xixf[i]))
-    if izquierda == True:
+    elif down == True:
+        ventana.blit(sprite_abajo,(posX2,posY2),(xixf[i]))
+    elif izquierda == True:
         ventana.blit(sprite_izquierda,(posX2,posY2),(xixf[i]))
-    else:
+    elif derecha == True:
         ventana.blit(sprite_derecha,(posX2,posY2),(xixf[i]))
 
 
