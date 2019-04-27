@@ -101,6 +101,7 @@ def main():
     M_arriba = imagen("sprite_prueba2.png")
     M_izquierda = imagen("sprite_prueba3i.png")
     M_derecha = imagen("sprite_prueba4d.png")
+    fondo = imagen("fondo2.png").convert()
     r1 = pygame.Rect(100,150,50,70)
     
     while True:
@@ -111,10 +112,9 @@ def main():
         persRarriba = Personaje(M_arriba,[x,y])
         persRizquier = Personaje(M_izquierda,[x,y])
         persRdere = Personaje(M_derecha,[x,y])
-        
+        ventana.blit(fondo,(0,0))
         teclado()
         
-        ventana.fill(colorLight)
         pygame.draw.rect(ventana,(0,0,0),r1)
         oldy = y
         oldx = x
