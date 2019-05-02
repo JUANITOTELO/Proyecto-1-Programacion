@@ -8,7 +8,7 @@ import pygame
 import sys
 import time
 from pygame.locals import *
-colorLight = (255,255,255)
+colorLight = (255,255,255,177)
 x,y = 100,250
 
 
@@ -48,7 +48,7 @@ def colision(r1,r2,coor_r1,coor_r2):
     
     
     if ((Pr1['B'][0] >= Pr2['A'][0]) and (Pr1['B'][0] <= Pr2['B'][0])) and ((Pr1['B'][1] >= Pr2['A'][1]) and (Pr1['B'][1] <= Pr2['C'][1])):
-        print("Colisiono.")
+        print("Colisiono.{0}".format(x))
         
     elif ((Pr1['A'][0] <= Pr2['B'][0]) and (Pr1['A'][0] >= Pr2['A'][0])) and ((Pr1['A'][1] >= Pr2['A'][1]) and (Pr1['A'][1] <= Pr2['D'][1])):
         print("Colisiono.")

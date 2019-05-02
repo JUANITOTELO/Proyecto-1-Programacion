@@ -4,6 +4,14 @@ import sys
 import time
 from pygame.locals import *
 from random import randint
+class personaje:
+    def __init__(self,img):
+        self.image = img
+        
+        
+    def draw(self,target_surface):
+        patch_rect = (self.curr_patch_num*34.6, 0, 34.6,self.image.get_height())
+        target_surface.blit(self.image,self.posn,patch_rect)
 #Colores 
 color = (255,24,72)
 Color = (255,48,108)
@@ -27,7 +35,6 @@ def imagen(s):
     x_imagen = pygame.image.load(s)
     return x_imagen
 
-#Imagenes
 Mi_imagen = imagen("imagenes/arbol.png")
 escaleras = imagen("stairs.png")
 M_abajo = imagen("sprite_prueba.png")
@@ -79,7 +86,7 @@ sprite_derecha.rect.right = posX2
 
 cont = 1
 i = 0
-xixf = [(0,0,90,90),(90,0,90,90),(180,0,270,90)]
+xixf = [(0,0,34.6,73),(34.6,0,34.6,73),(69.2,0,34.6,73)]
 
 up = False
 down = True
@@ -163,6 +170,9 @@ def main():
     ventana = pygame.display.set_mode((700,600))
     pygame.display.set_caption("Hola mundo!!")
     clock = pygame.time.Clock()
+    #Imagenes
+    
+    
     while True:
         clock.tick(60)
         teclado()
