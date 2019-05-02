@@ -157,13 +157,21 @@ def main():
         x_imagen = pygame.image.load(s)
         return x_imagen
     fondo = imagen("fondo2.png").convert_alpha()
+    
     arbol = imagen("imagenes/arbol.png").convert_alpha()
+    
     stair = imagen("stairsRC.png").convert_alpha()
     stairR = pygame.transform.scale(stair,(90,90))
+    stair_mask = pygame.mask.from_surface(stairR)
+    
     TR_r = imagen("trump_run.png").convert_alpha()
+    TR_r_mask = pygame.mask.from_surface(TR_r)
+    TR_r_rect = TR_r.get_rect()
+    
     TR_s = imagen("trump_iddle.png").convert_alpha()
     TR_sR = pygame.transform.scale(TR_s,(100,100))
-    
+    TR_sR_mask = pygame.mask.from_surface(TR_sR)
+    stair_rect = stair.get_rect()
     
     r1 = pygame.Rect(100,150,50,70)
     c = 0
