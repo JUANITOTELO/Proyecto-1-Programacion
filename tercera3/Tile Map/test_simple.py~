@@ -1,0 +1,28 @@
+import pygame
+
+def main():
+    """Preparar el juego y correr el ciclo principal"""
+    pygame.init() #preparar el módulo de juego
+    surf_sz = 480 #Tamaño de la superficie
+    #Crear la superficie y ventana que la contiene
+    main_surf = pygame.display.set_mode((surf_sz, surf_sz))
+    #Definir las propiedades de un rectángulo
+    small_rect = (300,200,150,90)
+    some_color = (255,0,0) #Rojo, Verde y Azul
+    while True:
+        ev = pygame.event.poll() #Busque cualquier evento
+        if ev.type == pygame.QUIT: #Presionó botón cerrar?
+            break
+        #Salga del ciclo
+        #Actualice objetos y estructuras del juego aquí...
+        #En cada frame dibujamos todo de nuevo.
+        #Primero llenamos con el color de fondo
+        main_surf.fill((0,200,255))
+        #Pinte un rectángulo sobre la superficie principal
+        main_surf.fill(some_color, small_rect)
+        #Muestre la escena
+        pygame.display.flip()
+        pygame.quit() #Cierre la ventana
+
+#Ejecución...
+main()
