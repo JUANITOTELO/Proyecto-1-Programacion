@@ -41,7 +41,7 @@ def main():
             xf -= 2
             l.append((xf,yf))
             print(l)
-            print(l[c2])
+            print(l[c2+2])
             c2 += 1
 
             
@@ -49,7 +49,7 @@ def main():
             xf += 2
             l.append((xf,yf))
             print(l)
-            print(l[c2])
+            print(l[c2+2])
             c2 += 1
 
             
@@ -57,18 +57,18 @@ def main():
             yf += 2 
             l.append((xf,yf))
             print(l)
-            print(l[c2])
+            print(l[c2+2])
             c2 += 1
             
         if tkla[K_UP]:
             yf -= 2
             l.append((xf,yf))
             print(l)
-            print(l[c2])
+            print(l[c2+2])
             c2 += 1
 
         
-        dibujarLineas(ventana,random_color,l[c2],l[c2+1],7,l)
+        dibujarLineas(ventana,random_color,l[c2],l[c2+1],10,l)
         
         
         for evento in pygame.event.get():
