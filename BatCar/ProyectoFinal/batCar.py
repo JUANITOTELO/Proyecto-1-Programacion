@@ -68,7 +68,7 @@ def teclado():
         izquierda = False
         up = False
         down = True
-        
+
 pygame.init()
 random_color = (randint(100,255), randint(0,199), randint(0,200))
 RED = (255,0,0,150)
@@ -225,6 +225,8 @@ def main():
 
 		if tkla[K_a]:
 			ser.write(bytes(b'b'))
+		else:
+			ser.write(bytes(b'c'))
 
 		if tkla[K_LEFT]:
 			ser.write(bytes(b'a'))
@@ -238,9 +240,13 @@ def main():
 			print(obs)
 			posXc2 -= 2
 			posXc -= 2
+		else:
+			ser.write(bytes(b'c'))
 
 		if tkla[K_d]:
 			ser.write(bytes(b'd'))
+		else:
+			ser.write(bytes(b'c'))
 
 		if tkla[K_RIGHT]:
 			ser.write(bytes(b'a'))
@@ -254,7 +260,8 @@ def main():
 			print(obs)
 			posXc += 2
 			posXc2 += 2
-
+		else:
+			ser.write(bytes(b'c'))
 	
 		if tkla[K_DOWN]:
 			ser.write(bytes (b'e'))
@@ -268,7 +275,8 @@ def main():
 			print(obs)
 			posYc2 += 2
 			posYc += 2
-
+		else:
+			ser.write(bytes(b'c'))
 	
 		if tkla[K_UP]:
 			ser.write(bytes(b'a'))
@@ -282,7 +290,8 @@ def main():
 			print(obs)
 			posYc -= 2
 			posYc2 -= 2
-
+		else:
+			ser.write(bytes(b'c'))
 	
 		if tkla[K_s]:
 			ser.write(bytes(b'c'))
