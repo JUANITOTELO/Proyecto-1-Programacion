@@ -3,7 +3,7 @@
 """
 Created on Sat May 18 14:43:35 2019
 
-@author: lovelace
+@author: Juan David Martinez
 """
 
 #!/usr/bin/env python3
@@ -112,7 +112,7 @@ class rectangle:
 	def draw(self, surface = None):
 		if not surface: surface = pygame.display.get_surface()
 		pygame.draw.rect(surface, self.fillColor, self.rect(),0)
-		
+
 	def __str__(self):
 		return ("x1:{0}\ny1:{1}\nx2:{2}\ny2:{3}\nid: {4}\n".format(self.x1,self.y1,self.x2,self.y2,self.id))
 
@@ -178,12 +178,12 @@ def main():
 		ly = [posYc+(r_Carro.height/2)-5]
 		lx2 = [posXc2+(r_Carro2.height/2)-21]
 		ly2 = [posYc2+(r_Carro2.width/2) + 90]
-		
+
 		lxi = [posXc-(r_Carro.width/2) -30]
 		lyi = [posYc-(r_Carro.height/2)+32]
 		lx2i = [posXc2-(r_Carro2.height/2) +52]
 		ly2i = [posYc2-(r_Carro2.width/2) - 30]
-		
+
 		random_color = (randint(100,255), randint(0,199), randint(0,200))
 		rectangles = list([rectangle(lx[0],  ly[0], 10, 10,random_color, i) for i in range(0, c)])
 		rectangles2 = list([rectangle(lx2[0],  ly2[0], 10, 10,random_color, i) for i in range(0, c)])
@@ -228,11 +228,13 @@ def main():
 
 		if tkla[K_a]:
 			ser.write(bytes(b'b'))
+		else:
+			ser.write(bytes(b'c'))
 
 		if tkla[K_LEFT]:
 			ser.write(bytes(b'a'))
 			obs = detectarObs()
-			if obs <= 5:
+			if obs <= 10:
 				ser.write(bytes(b'c'))
 				for r in rectanglesi:
 					if r.id == 0: continue
@@ -241,14 +243,18 @@ def main():
 			print(obs)
 			posXc2 -= 2
 			posXc -= 2
+		else:
+			ser.write(bytes(b'c'))
 
 		if tekla[K_d]:
 			ser.write(bytes(b'd'))
-			
+		else:
+			ser.write(bytes(b'c'))
+
 		if tkla[K_RIGHT]:
 			ser.write(bytes(b'a'))
 			obs = detectarObs()
-			if obs <= 5:
+			if obs <= 10:
 				ser.write(bytes(b'c'))
 				for r in rectangles:
 					if r.id == 0: continue
@@ -257,11 +263,13 @@ def main():
 			print(obs)
 			posXc += 2
 			posXc2 += 2
+		else:
+			ser.write(bytes(b'c'))
 
 		if tkla[K_DOWN]:
 			ser.write(bytes (b'e'))
 			obs = detectarObs()
-			if obs <= 5:
+			if obs <= 10:
 				ser.write(bytes(b'c'))
 				for r in rectangles2:
 					if r.id == 0: continue
@@ -270,11 +278,13 @@ def main():
 			print(obs)
 			posYc2 += 2
 			posYc += 2
+		else:
+			ser.write(bytes(b'c'))
 
 		if tkla[K_UP]:
 			ser.write(bytes(b'a'))
 			obs = detectarObs()
-			if obs <= 5:
+			if obs <= 10:
 				ser.write(bytes(b'c'))
 				for r in rectangles2i:
 					if r.id == 0: continue
@@ -283,19 +293,18 @@ def main():
 			print(obs)
 			posYc -= 2
 			posYc2 -= 2
+		else:
+			ser.write(bytes(b'c'))
 
 		if tkla[K_s]:
-            ser.write(bytes(b'c'))
+			ser.write(bytes(b'c'))
 
 		for evento in pygame.event.get():
 			if evento.type == QUIT:
 				pygame.quit()
 				sys.exit()
 
-
 		pygame.display.update()
 		clock.tick(60)
-
-
 
 main()
