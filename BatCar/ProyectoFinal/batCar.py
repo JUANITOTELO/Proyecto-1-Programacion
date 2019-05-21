@@ -1,13 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-Created on Sat May 18 14:43:35 2019
 
-@author: Juan David Martinez
-"""
 
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import pygame
 import serial
 import sys
@@ -117,7 +111,6 @@ class rectangle:
 	
 	
 def detectarObs():
-	obstaculo = False
 	count = -2
 	archivo = open("coor.txt","r")
 	x = archivo.read()
@@ -129,7 +122,7 @@ def detectarObs():
 	
 def main():
 	
-	ser = serial.Serial('COM6', 9600)
+	ser = serial.Serial('COM5', 9600)
 	
 	W,H = 1080,900
 	HW,HH = W/2,H/2
@@ -222,9 +215,19 @@ def main():
 				print("POSICIONES DE RECTANGULO ARRIBA:\n",r)
 				r.draw()
 			ventana.blit(Carro_r_Arriba,[posXc2,posYc2])
-
+		
+		if tkla[K_t]:
+			ser.write(bytes(b't'))
+			obs = detectarObs()
+			if obs <= 10:
+				ser.write(bytes(b's'))
+			else:
+				ser.write(bytes(b'e'))
+				time.sleep(1)
+			
 		if tkla[K_a]:
 			ser.write(bytes(b'b'))
+			time.sleep(0.8)
 		else:
 			ser.write(bytes(b'c'))
 
@@ -240,13 +243,11 @@ def main():
 			print(obs)
 			posXc2 -= 2
 			posXc -= 2
-		else:
-			ser.write(bytes(b'c'))
+
 
 		if tkla[K_d]:
 			ser.write(bytes(b'd'))
-		else:
-			ser.write(bytes(b'c'))
+			time.sleep(0.8)
 
 		if tkla[K_RIGHT]:
 			ser.write(bytes(b'a'))
@@ -260,8 +261,7 @@ def main():
 			print(obs)
 			posXc += 2
 			posXc2 += 2
-		else:
-			ser.write(bytes(b'c'))
+
 	
 		if tkla[K_DOWN]:
 			ser.write(bytes (b'e'))
@@ -275,8 +275,7 @@ def main():
 			print(obs)
 			posYc2 += 2
 			posYc += 2
-		else:
-			ser.write(bytes(b'c'))
+
 	
 		if tkla[K_UP]:
 			ser.write(bytes(b'a'))
@@ -290,8 +289,7 @@ def main():
 			print(obs)
 			posYc -= 2
 			posYc2 -= 2
-		else:
-			ser.write(bytes(b'c'))
+
 	
 		if tkla[K_s]:
 			ser.write(bytes(b'c'))
